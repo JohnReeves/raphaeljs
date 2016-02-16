@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <meta charset="UTF-8">
+    <title>Raphaeljs by JohnReeves</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="stylesheets/normalize.css" media="screen">
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="stylesheets/github-light.css" media="screen">
+  </head>
+  <body>
+    <section class="page-header">
+      <h1 class="project-name">Raphaeljs</h1>
+      <h2 class="project-tagline">raphaeljs worksheets published on io</h2>
+      <a href="https://github.com/JohnReeves/raphaeljs" class="btn">View on GitHub</a>
+      <a href="https://github.com/JohnReeves/raphaeljs/zipball/master" class="btn">Download .zip</a>
+      <a href="https://github.com/JohnReeves/raphaeljs/tarball/master" class="btn">Download .tar.gz</a>
+    </section>
+
+    <section class="main-content">
+      <h1>
+<a id="starting" class="anchor" href="#starting" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Starting</h1>
+
+<p><img src="http://i.imgur.com/zK4xZhV.png" alt="Imgur"></p>
+
+<p>Open JSFiddle - <a href="http://jsfiddle.net">http://jsfiddle.net</a> in a new tab (right click on the link - open in new tab)</p>
+
+<h1>
+<a id="2-using-raphael" class="anchor" href="#2-using-raphael" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>2. Using Raphael</h1>
+
+<p>We're going to be using a library to help us do all our drawing. If you look at the top left of JSFiddle there should be a drop down of libraries you can use - you might need to look carefully to find RaphaelJS 2.1.0</p>
+
+<p><img src="http://i.imgur.com/Bv0hFD2.png" alt="Imgur"></p>
+
+<h1>
+<a id="3-drawing-a-circle" class="anchor" href="#3-drawing-a-circle" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>3. Drawing a Circle</h1>
+
+<p>To begin drawing we first need to create ourselves a piece of paper:</p>
+
+<div class="highlight highlight-source-js"><pre><span class="pl-k">var</span> paper <span class="pl-k">=</span> <span class="pl-en">Raphael</span>(<span class="pl-c1">0</span>, <span class="pl-c1">0</span>, <span class="pl-c1">700</span>, <span class="pl-c1">700</span>);</pre></div>
+
+<p>We can then begin to draw our shapes on it - we're going to eventually have 9 emojis in a 3 by 3 grid - so don't make them too big!</p>
+
+<div class="highlight highlight-source-js"><pre><span class="pl-k">var</span> faceShape <span class="pl-k">=</span> <span class="pl-smi">paper</span>.<span class="pl-en">circle</span>(<span class="pl-c1">100</span>, <span class="pl-c1">100</span>, <span class="pl-c1">70</span>);
+<span class="pl-smi">faceShape</span>.<span class="pl-en">attr</span>(<span class="pl-s"><span class="pl-pds">"</span>fill<span class="pl-pds">"</span></span>, <span class="pl-s"><span class="pl-pds">"</span>#cc0000<span class="pl-pds">"</span></span>);</pre></div>
+
+<p>Note here - we can also change all of the same attributes like we could with SVG - for example here I'm changing the background colour to red.</p>
+
+<p><img src="http://i.imgur.com/v1Q7dsv.png" alt="Imgur"></p>
+
+<h1>
+<a id="4-custom-objects" class="anchor" href="#4-custom-objects" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>4. Custom Objects</h1>
+
+<p>We already have two variables; <code>paper</code> which is the name for where we're drawing on, and <code>faceShape</code> which is the name for the shape that represents the circle. </p>
+
+<p>We're going to now create an object to hold all the attributes associated with our emoji - this way we can then generate lots of them in future without changing our code.</p>
+
+<p>Start by creating an object:</p>
+
+<div class="highlight highlight-source-js"><pre><span class="pl-k">var</span> emojiObject <span class="pl-k">=</span> {
+  <span class="pl-s"><span class="pl-pds">'</span>fill<span class="pl-pds">'</span></span><span class="pl-k">:</span> <span class="pl-s"><span class="pl-pds">'</span>#ffcc00<span class="pl-pds">'</span></span>
+};</pre></div>
+
+<p>We can then use this for our <code>faceCircle</code> fill value like this :</p>
+
+<div class="highlight highlight-source-js"><pre><span class="pl-smi">faceShape</span>.<span class="pl-en">attr</span>(<span class="pl-s"><span class="pl-pds">"</span>fill<span class="pl-pds">"</span></span>, <span class="pl-smi">emojiObject</span>.<span class="pl-smi">fill</span>);</pre></div>
+
+<p><img src="http://i.imgur.com/i7qyJ82.png" alt="Imgur"></p>
+
+<h1>
+<a id="5-more-properties" class="anchor" href="#5-more-properties" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>5 More Properties</h1>
+
+<p>We can add more properties into our <code>emoji</code> object like this:</p>
+
+<div class="highlight highlight-source-js"><pre><span class="pl-k">var</span> emojiObject <span class="pl-k">=</span> {
+  <span class="pl-s"><span class="pl-pds">'</span>fill<span class="pl-pds">'</span></span><span class="pl-k">:</span> <span class="pl-s"><span class="pl-pds">'</span>#ffcc00<span class="pl-pds">'</span></span>,
+  <span class="pl-s"><span class="pl-pds">'</span>cx<span class="pl-pds">'</span></span><span class="pl-k">:</span><span class="pl-c1">100</span>,
+  <span class="pl-s"><span class="pl-pds">'</span>cy<span class="pl-pds">'</span></span><span class="pl-k">:</span><span class="pl-c1">100</span>
+};</pre></div>
+
+<p>And use them like :</p>
+
+<div class="highlight highlight-source-js"><pre><span class="pl-k">var</span> faceShape <span class="pl-k">=</span> <span class="pl-smi">paper</span>.<span class="pl-en">circle</span>(<span class="pl-smi">emojiObject</span>.<span class="pl-smi">cx</span>, <span class="pl-smi">emojiObject</span>.<span class="pl-smi">cy</span>, <span class="pl-c1">70</span>);</pre></div>
+
+<p>I've also added in another property for <code>eyeColour</code> and drawn into two eye circles. To add the eyes in the correct place you need to do a little math to calculate their location e.g. left eye is further left than cx (decrease x value) and higher than cy (decrease y value).  e.g.</p>
+
+<div class="highlight highlight-source-js"><pre><span class="pl-k">var</span> eyeLeft <span class="pl-k">=</span> <span class="pl-smi">paper</span>.<span class="pl-en">circle</span>(<span class="pl-smi">emojiObject</span>.<span class="pl-smi">cx</span> <span class="pl-k">-</span> <span class="pl-c1">25</span>, <span class="pl-smi">emojiObject</span>.<span class="pl-smi">cy</span> <span class="pl-k">-</span> <span class="pl-c1">15</span>, <span class="pl-c1">5</span>);
+<span class="pl-smi">eyeLeft</span>.<span class="pl-en">attr</span>(<span class="pl-s"><span class="pl-pds">"</span>fill<span class="pl-pds">"</span></span>, <span class="pl-smi">emojiObject</span>.<span class="pl-smi">eyeColour</span>);</pre></div>
+
+<p><img src="http://i.imgur.com/9mQHzFS.png" alt="Imgur"></p>
+
+<h1>
+<a id="6-even-more-properties" class="anchor" href="#6-even-more-properties" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>6 Even More Properties</h1>
+
+<p>We can also set up specific things for properties - for example how happy our emoji might be:</p>
+
+<div class="highlight highlight-source-js"><pre><span class="pl-k">var</span> emojiObject <span class="pl-k">=</span> {
+  <span class="pl-s"><span class="pl-pds">'</span>fill<span class="pl-pds">'</span></span><span class="pl-k">:</span> <span class="pl-s"><span class="pl-pds">'</span>#ffcc00<span class="pl-pds">'</span></span>,
+  <span class="pl-s"><span class="pl-pds">'</span>cx<span class="pl-pds">'</span></span><span class="pl-k">:</span><span class="pl-c1">100</span>,
+  <span class="pl-s"><span class="pl-pds">'</span>cy<span class="pl-pds">'</span></span><span class="pl-k">:</span><span class="pl-c1">100</span>,
+  <span class="pl-s"><span class="pl-pds">'</span>happiness<span class="pl-pds">'</span></span><span class="pl-k">:</span><span class="pl-s"><span class="pl-pds">'</span>happy<span class="pl-pds">'</span></span>
+};
+</pre></div>
+
+<p>We can then draw a smile using a path - again using some math to calculate where the smile should start by using the cx and cy:</p>
+
+<div class="highlight highlight-source-js"><pre><span class="pl-k">var</span> mouthX <span class="pl-k">=</span> <span class="pl-smi">emojiObject</span>.<span class="pl-smi">cx</span> <span class="pl-k">-</span> <span class="pl-c1">30</span>;
+<span class="pl-k">var</span> mouthY <span class="pl-k">=</span> <span class="pl-smi">emojiObject</span>.<span class="pl-smi">cy</span> <span class="pl-k">+</span> <span class="pl-c1">30</span>;
+
+<span class="pl-k">var</span> mouth <span class="pl-k">=</span> <span class="pl-smi">paper</span>.<span class="pl-en">path</span>(<span class="pl-s"><span class="pl-pds">"</span>M <span class="pl-pds">"</span></span> <span class="pl-k">+</span> mouthX <span class="pl-k">+</span> <span class="pl-s"><span class="pl-pds">"</span>,<span class="pl-pds">"</span></span> <span class="pl-k">+</span> mouthY <span class="pl-k">+</span> <span class="pl-s"><span class="pl-pds">"</span>q 30,15 60,0<span class="pl-pds">"</span></span>);</pre></div>
+
+<p><img src="http://i.imgur.com/WNCQkeZ.png" alt="Imgur"></p>
+
+<p>Next we need to add some logic to determine if the emoji is actually happy - we can do this by using an if statement:</p>
+
+<div class="highlight highlight-source-js"><pre>
+<span class="pl-k">if</span> (<span class="pl-smi">emojiObject</span>.<span class="pl-smi">happiness</span> <span class="pl-k">==</span> <span class="pl-s"><span class="pl-pds">"</span>happy<span class="pl-pds">"</span></span>){
+  <span class="pl-c">//make a happy face here</span>
+} <span class="pl-k">else</span> <span class="pl-k">if</span> (<span class="pl-smi">emojiObject</span>.<span class="pl-smi">happiness</span> <span class="pl-k">==</span> <span class="pl-s"><span class="pl-pds">"</span>unhappy<span class="pl-pds">"</span></span>){
+  <span class="pl-c">//make an unhappy face here </span>
+} <span class="pl-k">else</span> {
+  <span class="pl-c">//make a confused face here</span>
+}
+</pre></div>
+
+<p>My code looks like this :
+<img src="http://i.imgur.com/7w9snl9.png" alt="Imgur"></p>
+
+<h1>
+<a id="7-finishing" class="anchor" href="#7-finishing" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>7 Finishing</h1>
+
+<p>Before you move onto the next worksheet your emoji should have at least <strong>5 things</strong> that you can change with variables.</p>
+
+<p><img class="emoji" title=":star:" alt=":star:" src="https://assets-cdn.github.com/images/icons/emoji/unicode/2b50.png" height="20" width="20" align="absmiddle"> When you've finished - don't forget to save your JSFiddle and send us your link above. <img class="emoji" title=":star2:" alt=":star2:" src="https://assets-cdn.github.com/images/icons/emoji/unicode/1f31f.png" height="20" width="20" align="absmiddle"></p>
+
+      <footer class="site-footer">
+        <span class="site-footer-owner"><a href="https://github.com/JohnReeves/raphaeljs">Raphaeljs</a> is maintained by <a href="https://github.com/JohnReeves">JohnReeves</a>.</span>
+
+        <span class="site-footer-credits">This page was generated by <a href="https://pages.github.com">GitHub Pages</a> using the <a href="https://github.com/jasonlong/cayman-theme">Cayman theme</a> by <a href="https://twitter.com/jasonlong">Jason Long</a>.</span>
+      </footer>
+
+    </section>
+
+  
+  </body>
+</html>
