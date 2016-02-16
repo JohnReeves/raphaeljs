@@ -1,0 +1,130 @@
+#Starting
+
+![Imgur](http://i.imgur.com/zK4xZhV.png)
+
+Open JSFiddle - http://jsfiddle.net in a new tab (right click on the link - open in new tab)
+
+#2. Using Raphael
+
+We're going to be using a library to help us do all our drawing. If you look at the top left of JSFiddle there should be a drop down of libraries you can use - you might need to look carefully to find RaphaelJS 2.1.0
+
+
+![Imgur](http://i.imgur.com/Bv0hFD2.png)
+
+#3. Drawing a Circle
+
+To begin drawing we first need to create ourselves a piece of paper:
+
+```javascript
+var paper = Raphael(0, 0, 700, 700);
+```
+
+We can then begin to draw our shapes on it - we're going to eventually have 9 emojis in a 3 by 3 grid - so don't make them too big!
+
+```javascript
+var faceShape = paper.circle(100, 100, 70);
+faceShape.attr("fill", "#cc0000");
+```
+
+Note here - we can also change all of the same attributes like we could with SVG - for example here I'm changing the background colour to red.
+
+![Imgur](http://i.imgur.com/v1Q7dsv.png)
+
+#4. Custom Objects
+
+We already have two variables; `paper` which is the name for where we're drawing on, and `faceShape` which is the name for the shape that represents the circle. 
+
+We're going to now create an object to hold all the attributes associated with our emoji - this way we can then generate lots of them in future without changing our code.
+
+Start by creating an object:
+
+```javascript
+var emojiObject = {
+  'fill': '#ffcc00'
+};
+```
+
+We can then use this for our `faceCircle` fill value like this :
+
+```javascript
+faceShape.attr("fill", emojiObject.fill);
+```
+
+![Imgur](http://i.imgur.com/i7qyJ82.png)
+
+#5 More Properties
+
+We can add more properties into our `emoji` object like this:
+
+```javascript
+var emojiObject = {
+  'fill': '#ffcc00',
+  'cx':100,
+  'cy':100
+};
+```
+
+And use them like :
+
+```js
+var faceShape = paper.circle(emojiObject.cx, emojiObject.cy, 70);
+```
+
+I've also added in another property for `eyeColour` and drawn into two eye circles. To add the eyes in the correct place you need to do a little math to calculate their location e.g. left eye is further left than cx (decrease x value) and higher than cy (decrease y value).  e.g.
+
+```javascript
+var eyeLeft = paper.circle(emojiObject.cx - 25, emojiObject.cy - 15, 5);
+eyeLeft.attr("fill", emojiObject.eyeColour);
+```
+
+![Imgur](http://i.imgur.com/9mQHzFS.png)
+
+#6 Even More Properties
+
+We can also set up specific things for properties - for example how happy our emoji might be:
+
+```javascript
+var emojiObject = {
+  'fill': '#ffcc00',
+  'cx':100,
+  'cy':100,
+  'happiness':'happy'
+};
+
+```
+
+We can then draw a smile using a path - again using some math to calculate where the smile should start by using the cx and cy:
+
+```js
+var mouthX = emojiObject.cx - 30;
+var mouthY = emojiObject.cy + 30;
+
+var mouth = paper.path("M " + mouthX + "," + mouthY + "q 30,15 60,0");
+```
+
+![Imgur](http://i.imgur.com/WNCQkeZ.png)
+
+
+Next we need to add some logic to determine if the emoji is actually happy - we can do this by using an if statement:
+
+```js
+
+if (emojiObject.happiness == "happy"){
+  //make a happy face here
+} else if (emojiObject.happiness == "unhappy"){
+  //make an unhappy face here 
+} else {
+  //make a confused face here
+}
+
+```
+
+My code looks like this :
+![Imgur](http://i.imgur.com/7w9snl9.png)
+
+#7 Finishing
+
+Before you move onto the next worksheet your emoji should have at least **5 things** that you can change with variables.
+
+:star: When you've finished - don't forget to save your JSFiddle and send us your link above. :star2:
+
