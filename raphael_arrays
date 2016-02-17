@@ -9,7 +9,7 @@ Open JSFiddle - http://jsfiddle.net in a new tab (right click on the link - open
 We're going to be using a library to help us do all our drawing. If you look at the top left of JSFiddle there should be a drop down of libraries you can use - you might need to look carefully to find RaphaelJS 2.1.0
 
 
-![Imgur](http://i.imgur.com/Bv0hFD2.png)
+![Imgur](http://i.imgur.com/jI6pCQG.png)
 
 #3. Drawing a Circle
 
@@ -28,7 +28,7 @@ faceShape.attr("fill", "#cc0000");
 
 Note here - we can also change all of the same attributes like we could with SVG - for example here I'm changing the background colour to red.
 
-![Imgur](http://i.imgur.com/v1Q7dsv.png)
+![Imgur](http://i.imgur.com/1CVk7jO.png)
 
 #4. Custom Objects
 
@@ -50,7 +50,7 @@ We can then use this for our `faceCircle` fill value like this :
 faceShape.attr("fill", emojiObject.fill);
 ```
 
-![Imgur](http://i.imgur.com/i7qyJ82.png)
+![Imgur](http://i.imgur.com/ZLPNxi2.png)
 
 #5 More Properties
 
@@ -77,7 +77,7 @@ var eyeLeft = paper.circle(emojiObject.cx - 25, emojiObject.cy - 15, 5);
 eyeLeft.attr("fill", emojiObject.eyeColour);
 ```
 
-![Imgur](http://i.imgur.com/9mQHzFS.png)
+![Imgur](http://i.imgur.com/FC4OxKJ.png)
 
 #6 Even More Properties
 
@@ -102,7 +102,7 @@ var mouthY = emojiObject.cy + 30;
 var mouth = paper.path("M " + mouthX + "," + mouthY + "q 30,15 60,0");
 ```
 
-![Imgur](http://i.imgur.com/WNCQkeZ.png)
+![Imgur](http://i.imgur.com/pieGaPW.png)
 
 
 Next we need to add some logic to determine if the emoji is actually happy - we can do this by using an if statement:
@@ -120,7 +120,7 @@ if (emojiObject.happiness == "happy"){
 ```
 
 My code looks like this :
-![Imgur](http://i.imgur.com/7w9snl9.png)
+![Imgur](http://i.imgur.com/Wf7Ad6H.png)
 
 #7 Finishing
 
